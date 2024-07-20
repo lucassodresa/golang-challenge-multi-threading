@@ -6,8 +6,8 @@ In this challenge, you will utilize concepts of Multithreading and APIs to fetch
 
 The two requests will be made simultaneously to the following APIs:
 
-- [BrasilAPI](https://brasilapi.com.br/api/cep/v1/01153000)
-- [ViaCEP](http://viacep.com.br/ws/01153000/json/)
+- [BrasilAPI](https://brasilapi.com.br/docs#tag/CEP/paths/~1cep~1v1~1{cep}/get)
+- [ViaCEP](http://viacep.com.br/)
 
 ## Requirements
 
