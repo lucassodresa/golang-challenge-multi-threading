@@ -19,18 +19,22 @@ func logApiError(err error, apiUrl string) {
 }
 
 func getFromApi(ctx context.Context, apiUrl string, ch chan<- string) {
+	// parse url
 	url, err := url.Parse(apiUrl)
 	if err != nil {
 		logApiError(err, apiUrl)
 	}
 
+	// create client
 	client := &http.Client{}
 
+	// create request
 	req, err := http.NewRequestWithContext(ctx, "GET", apiUrl, nil)
 	if err != nil {
 		logApiError(err, apiUrl)
 	}
 
+	// send request
 	res, err := client.Do(req)
 	if err != nil {
 		if errors.Is(err, context.Canceled) {
@@ -40,6 +44,7 @@ func getFromApi(ctx context.Context, apiUrl string, ch chan<- string) {
 	}
 	defer res.Body.Close()
 
+	// read response
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		logApiError(err, apiUrl)
